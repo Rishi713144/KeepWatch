@@ -4,8 +4,10 @@
   "type": "module",
   "dependencies": {
     "axios": "^1.10.0",
+    "dotenv": "^16.5.0",
     "redisstream": "*",
-    "store": "*"
+    "store": "*",
+    "url-security": "*"
   },
   "devDependencies": {
     "@types/bun": "latest"

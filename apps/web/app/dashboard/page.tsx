@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Dashboard() {
@@ -9,7 +10,7 @@ export default function Dashboard() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem("betteruptime_jwt")) {
+    if (!localStorage.getItem("keepwatch_jwt")) {
       window.location.href = "/signin";
     }
   }, []);
@@ -19,8 +20,8 @@ export default function Dashboard() {
     setBusy(true);
     setMessage("");
     try {
-      const token = localStorage.getItem("betteruptime_jwt");
-      const response = await fetch("http://localhost:3001/website", {
+      const token = localStorage.getItem("keepwatch_jwt");
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}/website`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,14 +40,14 @@ export default function Dashboard() {
   }
 
   function signOut() {
-    localStorage.removeItem("betteruptime_jwt");
+    localStorage.removeItem("keepwatch_jwt");
     window.location.href = "/";
   }
 
   return (
     <div className={styles.page}>
       <nav className={styles.nav}>
-        <a className={styles.brand} href="/"><span className={styles.brandMark} />Better Uptime</a>
+        <Link className={styles.brand} href="/"><span className={styles.brandMark} />Keepwatch</Link>
         <button className={styles.signout} onClick={signOut}>Sign out</button>
       </nav>
       <main className={styles.main}>

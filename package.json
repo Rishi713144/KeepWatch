@@ -1,5 +1,5 @@
 {
-  "name": "betteruptime",
+  "name": "keepwatch",
   "private": true,
   "scripts": {
     "build": "turbo run build",

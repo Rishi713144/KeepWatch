@@ -4,9 +4,9 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <nav className={styles.nav}>
-        <a className={styles.brand} href="#" aria-label="Better Uptime home">
+        <a className={styles.brand} href="#" aria-label="Keepwatch home">
           <span className={styles.brandMark} />
-          Better Uptime
+          Keepwatch
         </a>
         <div className={styles.navLinks}>
           <a href="#features">Features</a>
@@ -71,8 +71,8 @@ export default function Home() {
 
             <div className={styles.monitorList}>
               {[
-                ["Production website", "betteruptime.app"],
-                ["API service", "api.betteruptime.app"],
+                ["Production website", "keepwatch.app"],
+                ["API service", "api.keepwatch.app"],
               ].map(([name, domain]) => (
                 <div className={styles.monitorRow} key={name}>
                   <span className={styles.statusIcon}>✓</span>

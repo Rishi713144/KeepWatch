@@ -12,7 +12,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Better Uptime",
+  title: "Keepwatch",
   description: "Website uptime monitoring and incident visibility",
 };
 

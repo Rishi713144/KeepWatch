@@ -16,24 +16,33 @@ model user {
 }
 
 model website {
-  id         String         @id @default(uuid())
-  url        String
-  user_id    String
-  time_added DateTime
-  user       user           @relation(fields: [user_id], references: [id])
-  ticks      website_tick[]
+  id              String         @id @default(uuid())
+  url             String
+  user_id         String
+  time_added      DateTime       @default(now())
+  interval_seconds Int            @default(180)
+  enabled         Boolean        @default(true)
+  next_check_at   DateTime       @default(now())
+  last_checked_at DateTime?
+  failure_count   Int            @default(0)
+  last_error      String?
+  ticks           website_tick[]
+  user            user           @relation(fields: [user_id], references: [id])
 }
 
 model region {
-  id     String         @id @default(uuid())
-  name   String
-  tickes website_tick[]
+  id    String         @id @default(uuid())
+  name  String
+  ticks website_tick[]
 }
 
 model website_tick {
   id               String         @id @default(uuid())
   response_time_ms Int
   status           website_status
+  http_status_code Int?
+  error_message    String?
+  attempt          Int            @default(1)
   region_id        String
   website_id       String
   createdAt        DateTime       @default(now())
@@ -45,4 +54,14 @@ enum website_status {
   Up
   Down
   Unknown
+}
+
+model job_failure {
+  id            String   @id @default(uuid())
+  job_id        String
+  website_id    String
+  url           String
+  total_attempts Int
+  final_error   String
+  failed_at     DateTime @default(now())
 }

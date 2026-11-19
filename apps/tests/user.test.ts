@@ -24,7 +24,7 @@ describe("Signup endpoints", () => {
                 username: USER_NAME,
                 password: "password"
             })
-            expect(res.status).toBe(200);
+            expect(res.status).toBe(201);
             expect(res.data.id).toBeDefined();
         } catch(e) {
             // console.log(e);

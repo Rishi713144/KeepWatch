@@ -11,6 +11,10 @@ node_modules
 .env.development.local
 .env.test.local
 .env.production.local
+*.env
+*.env.local
+!.env.example
+!.env.local.example
 
 # Testing
 coverage
@@ -36,3 +40,7 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+*.key
+*.p12
+*.pfx
+steps.png

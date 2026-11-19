@@ -38,6 +38,21 @@ describe("Website gets created", () => {
         expect(response.data.id).not.toBeNull();
     })
 
+    it("Website is rejected if the URL targets a private network", async () => {
+        try {
+            await axios.post(`${BACKEND_URL}/website`, {
+                url: "http://127.0.0.1"
+            }, {
+                headers: {
+                    Authorization: token
+                }
+            });
+            expect(false, "Private URL should be rejected");
+        } catch (error) {
+            expect(axios.isAxiosError(error) && error.response?.status).toBe(400);
+        }
+    })
+
 
     it("Website is not created if the header is not present", async () => {
         try {
@@ -98,7 +113,7 @@ describe("Can fetch website", () => {
 
             await axios.get(`${BACKEND_URL}/status/${websiteResponse.data.id}`, {
                 headers: {
-                    Authorization: token1
+                    Authorization: token2
                 }
             })
             expect(false, "Should be able to access website of a diff user")

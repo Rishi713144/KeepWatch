@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import styles from "../auth.module.css";
 
 export default function SignIn() {
@@ -14,7 +15,7 @@ export default function SignIn() {
     const form = new FormData(event.currentTarget);
 
     try {
-      const response = await fetch("http://localhost:3001/user/signin", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}/user/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -24,7 +25,7 @@ export default function SignIn() {
       });
       if (!response.ok) throw new Error("Invalid username or password.");
       const data = await response.json();
-      localStorage.setItem("betteruptime_jwt", data.jwt);
+      localStorage.setItem("keepwatch_jwt", data.jwt);
       window.location.href = "/dashboard";
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Sign in failed.");
@@ -36,7 +37,7 @@ export default function SignIn() {
   return (
     <main className={styles.page}>
       <section className={styles.card}>
-        <a className={styles.brand} href="/"><span className={styles.brandMark} />Better Uptime</a>
+        <Link className={styles.brand} href="/"><span className={styles.brandMark} />Keepwatch</Link>
         <h1>Welcome back</h1>
         <p className={styles.subtitle}>Sign in to manage your monitors.</p>
         <form className={styles.form} onSubmit={submit}>

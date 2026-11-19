@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import styles from "../auth.module.css";
 
 export default function SignUp() {
@@ -16,7 +17,7 @@ export default function SignUp() {
     const password = String(form.get("password"));
 
     try {
-      const response = await fetch("http://localhost:3001/user/signup", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}/user/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -33,7 +34,7 @@ export default function SignUp() {
   return (
     <main className={styles.page}>
       <section className={styles.card}>
-        <a className={styles.brand} href="/"><span className={styles.brandMark} />Better Uptime</a>
+        <Link className={styles.brand} href="/"><span className={styles.brandMark} />Keepwatch</Link>
         <h1>Create your account</h1>
         <p className={styles.subtitle}>Start monitoring your websites.</p>
         <form className={styles.form} onSubmit={submit}>

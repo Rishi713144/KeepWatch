@@ -4,7 +4,7 @@
 .brandMark { width:20px; height:20px; border-radius:50%; background:#47a47a; box-shadow:inset 7px -5px 0 #c8ead8; }
 .signout { border:1px solid #d7e1db; border-radius:8px; background:white; height:38px; padding:0 13px; font:inherit; cursor:pointer; }
 .main { width:min(1180px,calc(100% - 48px)); margin:42px auto; }
-.header { display:flex; align-items:end; justify-content:space-between; }
+.header { display:flex; align-items:flex-end; justify-content:space-between; }
 .header h1 { font-size:34px; letter-spacing:-.04em; }
 .header p { margin-top:7px; color:#7a8780; }
 .form { display:flex; gap:10px; }
