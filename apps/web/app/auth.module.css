@@ -1,0 +1,29 @@
+.page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  background: radial-gradient(circle at 50% 10%, rgba(185,218,202,.38), transparent 24rem), #f7faf8;
+  color: #17211d;
+}
+.card {
+  width: min(430px, 100%);
+  border: 1px solid #dfe7e2;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 24px 60px rgba(42,74,59,.12);
+  padding: 34px;
+}
+.brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 750; margin-bottom: 34px; }
+.brandMark { width: 20px; height: 20px; border-radius: 50%; background: #47a47a; box-shadow: inset 7px -5px 0 #c8ead8; }
+.card h1 { font-size: 30px; letter-spacing: -.035em; }
+.subtitle { margin: 8px 0 24px; color: #748079; line-height: 1.5; }
+.form { display: flex; flex-direction: column; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 7px; color: #566159; font-size: 13px; font-weight: 700; }
+.field input { height: 46px; border: 1px solid #d7e1db; border-radius: 8px; padding: 0 13px; font: inherit; color: #17211d; background: #fbfcfb; }
+.field input:focus { outline: 2px solid #b8dac8; border-color: #83bc9f; }
+.submit { height: 48px; border: 0; border-radius: 8px; background: #1e6c50; color: white; font: inherit; font-weight: 750; cursor: pointer; margin-top: 4px; }
+.submit:disabled { opacity: .65; cursor: wait; }
+.message { min-height: 20px; color: #b24a45; font-size: 13px; }
+.footer { margin-top: 18px; text-align: center; color: #748079; font-size: 13px; }
+.footer a { color: #1e6c50; font-weight: 750; }

@@ -1,102 +1,104 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
-
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.com/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      <nav className={styles.nav}>
+        <a className={styles.brand} href="#" aria-label="Better Uptime home">
+          <span className={styles.brandMark} />
+          Better Uptime
+        </a>
+        <div className={styles.navLinks}>
+          <a href="#features">Features</a>
+          <a href="#status">Status</a>
+          <a href="#pricing">Pricing</a>
         </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
+        <div className={styles.navActions}>
+          <a className={styles.signIn} href="/signin">Sign in</a>
+          <a className={styles.navCta} href="/signup">Get started</a>
+        </div>
+      </nav>
+
+      <main>
+        <section className={styles.hero}>
+          <div className={styles.heroContent}>
+            <div className={styles.eyebrow}>
+              <span className={styles.liveDot} />
+              Monitoring status
+              <span className={styles.eyebrowDivider} />
+              All systems operational
+            </div>
+            <h1>Know when your<br />website goes down.</h1>
+            <p className={styles.heroText}>
+              Monitor uptime, response times, and incidents from multiple regions.
+              Catch problems before your customers do.
+            </p>
+            <div className={styles.heroActions} id="get-started">
+              <a className={styles.primaryCta} href="/signup">
+                Start monitoring
+                <span aria-hidden="true">→</span>
+              </a>
+              <a className={styles.secondaryCta} href="#features">Explore features</a>
+            </div>
+          </div>
+
+          <div className={styles.dashboard} id="status">
+            <div className={styles.dashboardHeader}>
+              <div>
+                <span className={styles.dashboardLabel}>LIVE STATUS</span>
+                <h2>Service overview</h2>
+              </div>
+              <span className={styles.liveBadge}><span />Live</span>
+            </div>
+
+            <div className={styles.metrics}>
+              <div className={styles.metric}>
+                <span>Uptime</span>
+                <strong>99.99%</strong>
+                <small>Last 30 days</small>
+              </div>
+              <div className={styles.metric}>
+                <span>Avg. response</span>
+                <strong>142 <em>ms</em></strong>
+                <small>Across regions</small>
+              </div>
+              <div className={styles.metric}>
+                <span>Incidents</span>
+                <strong>0</strong>
+                <small>This month</small>
+              </div>
+            </div>
+
+            <div className={styles.monitorList}>
+              {[
+                ["Production website", "betteruptime.app"],
+                ["API service", "api.betteruptime.app"],
+              ].map(([name, domain]) => (
+                <div className={styles.monitorRow} key={name}>
+                  <span className={styles.statusIcon}>✓</span>
+                  <div className={styles.monitorName}>
+                    <strong>{name}</strong>
+                    <span>{domain}</span>
+                  </div>
+                  <div className={styles.pulseBars} aria-label="Healthy response history">
+                    {[8,12,9,14,11,8,10,13,7,11,9,14,10,12,8,11,9,13,10,8,12,9,14,10].map((height, index) => (
+                      <i key={index} style={{ height }} />
+                    ))}
+                  </div>
+                  <span className={styles.operational}>Operational</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.featureStrip} id="features">
+          <div><strong>Global monitoring</strong><span>Check from multiple regions</span></div>
+          <div><strong>Instant alerts</strong><span>Know the moment things break</span></div>
+          <div><strong>Clear incidents</strong><span>Track status and response history</span></div>
+        </section>
+        <section className={styles.pricingAnchor} id="pricing" aria-label="Pricing" />
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.com?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.com →
-        </a>
-      </footer>
     </div>
   );
 }

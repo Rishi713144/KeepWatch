@@ -7,6 +7,29 @@ import { AuthInput } from "./types";
 import { authMiddleware } from "./middleware";
 
 app.use(express.json());
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    if (req.method === "OPTIONS") {
+        res.sendStatus(204);
+        return;
+    }
+    next();
+});
+
+app.get("/", (_req, res) => {
+    res.json({
+        name: "Better Uptime API",
+        status: "operational",
+        endpoints: {
+            signup: "POST /user/signup",
+            signin: "POST /user/signin",
+            addWebsite: "POST /website",
+            websiteStatus: "GET /status/:websiteId"
+        }
+    });
+});
 
 app.post("/website", authMiddleware, async (req, res) => {
     if (!req.body.url) {
